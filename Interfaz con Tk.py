@@ -2,14 +2,64 @@
 ##que tenga un número de controles (widgets) representativo con respecto a lo que hemos visto en clase
 import tkinter as tk
 
-#definicion de funciones
+raiz = tk.Tk()
+
+#DEFINICION DE FUNCIONES
 def salida():
     raiz.destroy()
     
+def crear():
+    def pulsar():
+        texto=campo1.get()
+        mensaje1.destroy()
+        campo1.destroy()
+        boton1.destroy()
+        añadir(texto)
 
-raiz = tk.Tk()
+    def añadir(tipodelista):
+        mensaje2 = tk.Label(raiz,text=("Lista de "+tipodelista))
+        mensaje2.pack(padx=20,pady=10)
+        mensaje3.pack(padx=20,pady=10)
+        campo2.pack()
+        boton2.pack(padx=20,pady=20)
+        boton3.pack(padx=20,pady=20)
+
+    def pulsarAñadir():
+        texto=campo2.get()
+        lista.append(texto)
+        print(lista)
+        campo2.delete(0,tk.END)
+
+    def pulsarAceptar():
+        mensaje3.destroy()
+        campo2.destroy()
+        boton2.destroy()
+        boton3.destroy()
+        mensaje4 = tk.Label(raiz,text="Lista creada correctamente")
+        mensaje4.pack(padx=20,pady=20)
+        print(lista)
+
+    lista = []
+    mensaje1 = tk.Label(raiz,text="De qué quieres hacer la lista")
+    mensaje1.pack(padx=20,pady=20)
+    mensaje3 = tk.Label(raiz,text="Añade un elemento")
+    campo1 = tk.Entry(raiz)
+    campo1.pack()
+    campo2 = tk.Entry(raiz)
+    boton1 = tk.Button(raiz,text="Aceptar",command=pulsar)
+    boton1.pack(padx=20,pady=20)
+    boton2 = tk.Button(raiz,text="Añadir",command=pulsarAñadir)
+    boton3 = tk.Button(raiz,text="Aceptar",command=pulsarAceptar)
+    return lista
+
+def abrir():
+    print(listado)
+    
+
 #título de la ventana
 raiz.title("Título provisional")
+#declaramos la lista
+listado = crear()
 #Creamos una barra de menu
 barramenu = tk.Menu(raiz)
 raiz.config(menu=barramenu)
@@ -17,8 +67,8 @@ raiz.config(menu=barramenu)
 lista = tk.Menu(barramenu,tearoff=0)
 barramenu.add_cascade(label="Lista",menu=lista)
 
-lista.add_command(label="Crear nueva lista")
-lista.add_command(label="Abrir una lista")
+lista.add_command(label="Crear nuevo formulario",command=crear)
+lista.add_command(label="Abrir una lista",command=abrir)
 lista.add_command(label="Eliminar una lista")
 
 salir = tk.Menu(barramenu,tearoff=0)
