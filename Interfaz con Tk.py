@@ -1,5 +1,3 @@
-##Hacer una interfaz de usuario libre usando Tk, en una ventana raiz, crea una interfaz de usuario
-##que tenga un número de controles (widgets) representativo con respecto a lo que hemos visto en clase
 import tkinter as tk
 
 raiz = tk.Tk()
@@ -77,7 +75,7 @@ def abrir():
     boton2.pack(padx=10,pady=10)
 
 #título de la ventana
-raiz.title("Título provisional")
+raiz.title("Formulario y aficiones")
 #Declaración mensaje 4
 mensaje4 = tk.Label(raiz,text="Lista creada correctamente")
 #Creamos una barra de menu
